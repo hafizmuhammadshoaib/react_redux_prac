@@ -7,7 +7,7 @@ class Counter extends Component {
         console.log('store',this.props)
         return (
             <div>
-                <button onClick={(e) => this.props.dcrmnt}>-</button><span>{this.props.counter}</span><button onClick={(e) => this.props.incrmnt}>+</button>
+                <button onClick={(e) => this.props.decrmnt()}>-</button><span>{this.props.counter}</span><button onClick={(e) => this.props.incrmnt()}>+</button>
             </div>
         )
     }
@@ -23,8 +23,8 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
     console.log('map dispatch to props',dispatch)
     return {
-        incrmnt:   dispatch(CounterAction.increment()),
-        decrmnt:  dispatch(CounterAction.decrement())
+        incrmnt:  function(){return dispatch(CounterAction.increment())},
+        decrmnt: function(){return dispatch(CounterAction.decrement())}
     }
 
 }
